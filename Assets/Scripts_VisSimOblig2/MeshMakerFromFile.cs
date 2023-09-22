@@ -13,7 +13,7 @@ public class MeshMakerFromFile : MonoBehaviour
      * - use arrays to build a custom mesh
      */
 
-    Vector3[] mesh_vert;        // vertex
+    public Vector3[] mesh_vert;        // vertex
     int[] triangle_index =      // index
         {
         0, 3, 1,
