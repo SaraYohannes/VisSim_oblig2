@@ -13,14 +13,18 @@ public class MeshMakerFromFile : MonoBehaviour
      * - use arrays to build a custom mesh
      */
 
-    Vector3[] mesh_vert;
-    int[] triangle_index = 
+    Vector3[] mesh_vert;        // vertex
+    int[] triangle_index =      // index
         {
         0, 3, 1,
         1, 3, 4,
         1, 4, 5,
         1, 5, 2
         };
+    Vector3[] vertex_norm;      // normals to vertex
+    Vector3[] triangles;        // index
+    Vector3[] neighb;           // neighbour
+    Vector3[] triangle_norm;    // normals to triangles
 
     private void Awake()
     {
@@ -57,6 +61,7 @@ public class MeshMakerFromFile : MonoBehaviour
         {
             int vert_count = int.Parse(vertex_sr.ReadLine());
             mesh_vert = new Vector3[vert_count];
+            vertex_norm = new Vector3[vert_count];
 
             Debug.Log("vert count: " + vert_count);
             int counter = 0;

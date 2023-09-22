@@ -445,9 +445,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2136467194}
-  - component: {fileID: 2136467193}
   - component: {fileID: 2136467195}
   - component: {fileID: 2136467196}
+  - component: {fileID: 2136467193}
   - component: {fileID: 2136467197}
   m_Layer: 0
   m_Name: MeshMaker
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2136467192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83a3435edfd6cae4db55b19803c4e405, type: 3}
+  m_Script: {fileID: 11500000, guid: f35a5be7a538c1d4c832c51ab63cf1e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
