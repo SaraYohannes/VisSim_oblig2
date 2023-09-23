@@ -21,6 +21,10 @@ public class MeshMakerFromFile : MonoBehaviour
         1, 4, 5,
         1, 5, 2
         };
+
+    // Dictionary<int, int> nameIndex = new Dictionary<int, int>();
+    // Dictionary<int, int> nameNeighbour = new Dictionary<int, int>();
+
     Vector3[] vertex_norm;      // normals to vertex
     Vector3[] triangles;        // index
     Vector3[] neighb;           // neighbour
@@ -61,9 +65,9 @@ public class MeshMakerFromFile : MonoBehaviour
         {
             int vert_count = int.Parse(vertex_sr.ReadLine());
             mesh_vert = new Vector3[vert_count];
-            vertex_norm = new Vector3[vert_count];
+            // vertex_norm = new Vector3[vert_count];
 
-            Debug.Log("vert count: " + vert_count);
+            // Debug.Log("vert count: " + vert_count);
             int counter = 0;
             while (!vertex_sr.EndOfStream)
             {
@@ -80,12 +84,30 @@ public class MeshMakerFromFile : MonoBehaviour
                 mesh_vert[counter] = temp_v;
                 counter++;
             }
-            for (int i = 0; i < vert_count; i++)
-                Debug.Log(mesh_vert[i]);
+            // for (int i = 0; i < vert_count; i++)
+                // Debug.Log(mesh_vert[i]);
         }
         // insert index_string into final array
         if (index_sr != null)
-        {        
+        {
+            /*int index_count = int.Parse(index_sr.ReadLine());
+
+            int counter = 0;
+            while (!index_sr.EndOfStream)
+            {
+                string temp_line = index_sr.ReadLine();
+
+                string[] find_name_temp = temp_line.Split(':');
+
+                string name = find_name_temp[0];
+
+                string[] find_index_neighbours = find_name_temp[1].Split(",");
+
+
+
+                counter++;
+            }*/
+
             /*        
             // we read first line to figure out size of triangle indecis arr
             int inde_count = int.Parse(index_sr.ReadLine());
@@ -112,8 +134,8 @@ public class MeshMakerFromFile : MonoBehaviour
                 }
             }
             */
-        //for (int i = 0; i < counter; i++)
-        //    Debug.Log(triangle_index[i]);
+            //for (int i = 0; i < counter; i++)
+            //    Debug.Log(triangle_index[i]);
         }
     }
 }

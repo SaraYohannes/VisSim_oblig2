@@ -17,20 +17,12 @@ public class BallPhysics : MonoBehaviour
     }
     void Start()
     {
-        transform.position = Vector3.zero;
+
     }
 
     private void FixedUpdate()
     {
-        bool hei = barycentric(transform.position);
-        if (!hei)
-        {
-            //return error, out of bounds
-        }
-        else
-        {
-            //check projection on normal to find collition
-        }
+        
     }
 
     bool barycentric(Vector3 pos)
