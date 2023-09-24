@@ -14,7 +14,7 @@ public class MeshMakerFromFile : MonoBehaviour
      */
 
     public Vector3[] mesh_vert;        // vertex
-    int[] triangle_index =      // index
+    public int[] triangle_index =      // index
         {
         0, 3, 1,
         1, 3, 4,

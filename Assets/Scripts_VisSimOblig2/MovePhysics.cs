@@ -29,22 +29,21 @@ public class MovePhysics : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 triangleNormal = Normal();
-        Debug.Log("triangleNormal: " +  triangleNormal);
-
-        //newAcceleration = Acceleration(triangleNormal);
-        
-        newVelocity = Velocity();
         transform.position = transform.position + newVelocity * Time.fixedDeltaTime;
-
+        newVelocity = Velocity();
+       
+        //newAcceleration = Acceleration(triangleNormal);
+        Vector3 triangleNormal = bary_Access.normalGets(transform.position);
+        Debug.Log("triangleNormal: " +  triangleNormal);
+        
     }
 
     Vector3 Velocity()
     {
         float gravity = -9.81f;
 
-        //newVelocity = currentVelocity + (new Vector3(-2.0f, 0.0f, -2.0f) * Time.deltaTime * gravity);
-        newVelocity = currentVelocity + (currentAcceleration * Time.deltaTime * gravity);
+        newVelocity = currentVelocity + (new Vector3(-2.0f, 0.0f, -2.0f) * Time.deltaTime * gravity);
+        //newVelocity = currentVelocity + (currentAcceleration * Time.deltaTime * gravity);
 
         return newVelocity;
     }
@@ -65,9 +64,9 @@ public class MovePhysics : MonoBehaviour
 
         Vector3 normal = bary_Access.AB;
         Vector3 normal2 = bary_Access.AC;
-
+        
         Vector3 n = Vector3.Cross(normal, normal2).normalized;
-
+        
         return n;
     }
 }

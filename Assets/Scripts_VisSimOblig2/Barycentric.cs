@@ -15,7 +15,8 @@ public class Barycentric : MonoBehaviour
     [SerializeField] public Transform SphereInfo;
     [SerializeField] public Transform tester_gizmo;
     Vector3[] meshinfo;
-    public Vector3 currentTriangle;
+    int[] indexinfo;
+    public int currentTriangle;
     public Vector3 AB;
     public Vector3 AC;
 
@@ -23,6 +24,7 @@ public class Barycentric : MonoBehaviour
     {
         // Vector3 array with vertex information about the mesh
         meshinfo = MeshInfo.GetComponent<MeshMakerFromFile>().mesh_vert;
+        indexinfo = MeshInfo.GetComponent<MeshMakerFromFile>().triangle_index;
         // GameObject with all information about the sphere
         SphereInfo = SphereInfo.GetComponent<Transform>();        
         // Gizmo to track barycooridinates
@@ -34,8 +36,13 @@ public class Barycentric : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 sphere_vec = SphereInfo.transform.position;
+        Debug.Log(sphere_vec);
         Vector3 currentLocaton = baryCentricPosition(meshinfo, sphere_vec);
         Debug.Log(currentLocaton);
+
+
+       
+
         tester_gizmo.transform.position = currentLocaton;
     }
 
@@ -45,26 +52,64 @@ public class Barycentric : MonoBehaviour
         Vector3 barycentric = new Vector3 (-1.0f, -1.0f, -1.0f);
         Vector2 vec2sphere = new Vector2(sphere.x, sphere.z);
 
-        for (int i = 0; i < vertexInformation.Length / 3; i++)
+        for (int i = 0; i < indexinfo.Length / 3; i++)
         {
-            p1 = vertexInformation[i * 3];
-            p2 = vertexInformation[i * 3 + 1];
-            p3 = vertexInformation[i * 3 + 2];
+            p1 = vertexInformation[indexinfo[i * 3]];
+            p2 = vertexInformation[indexinfo[i * 3 + 1]];
+            p3 = vertexInformation[indexinfo[i * 3 + 2]];
 
             barycentric = getBaryC(new Vector2(p1.x, p1.z), new Vector2(p2.x, p2.z), new Vector2(p3.x, p3.z), vec2sphere);
 
             if (barycentric.x >= 0 && barycentric.y >= 0 && barycentric.z >= 0)
             {
-                currentTriangle = barycentric;
+                currentTriangle = i;
+                Debug.Log("Current Triangle test: " +  currentTriangle);
                 AB = p2 - p1;
                 AC = p3 - p1;
+                Vector3 n = Vector3.Cross(AB, AC);
+                Debug.Log("Normal fra bary AB;AC: " + n);
                 break;
             }
         }
 
-        return barycentric;
+        Vector3 height = (barycentric.x * p1 + barycentric.y * p2 + barycentric.z * p3);
+
+        return height;
         
     }
+
+    public Vector3 normalGets(Vector3 sphere)
+    {
+
+        Vector3 p1 = new Vector3(), p2 = new Vector3(), p3 = new Vector3();
+        Vector3 barycentric = new Vector3(-1.0f, -1.0f, -1.0f);
+        Vector2 vec2sphere = new Vector2(sphere.x, sphere.z);
+
+        for (int i = 0; i < indexinfo.Length / 3; i++)
+        {
+            p1 = meshinfo[indexinfo[i * 3]];
+            p2 = meshinfo[indexinfo[i * 3 + 1]];
+            p3 = meshinfo[indexinfo[i * 3 + 2]];
+
+            barycentric = getBaryC(new Vector2(p1.x, p1.z), new Vector2(p2.x, p2.z), new Vector2(p3.x, p3.z), vec2sphere);
+
+            if (barycentric.x >= 0 && barycentric.y >= 0 && barycentric.z >= 0)
+            {
+                currentTriangle = i;
+                Debug.Log("Current Triangle test: " + currentTriangle);
+                AB = p2 - p1;
+                AC = p3 - p1;
+                Vector3 n = Vector3.Cross(AB, AC);
+                Debug.Log("Normal fra bary AB;AC: " + n);
+                return n;
+            }
+        }
+
+     
+        return Vector3.zero;
+
+    }
+
 
     Vector3 getBaryC(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 vec2sphere)
     {
@@ -89,6 +134,7 @@ public class Barycentric : MonoBehaviour
 
         Vector3 barycentric3D = new Vector3(u, v, w);
         Debug.Log("GetBaryC returns: " + barycentric3D);
+
 
         return barycentric3D;
 
