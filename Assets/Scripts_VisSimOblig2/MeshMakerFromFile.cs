@@ -53,6 +53,7 @@ public class MeshMakerFromFile : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
         mesh.vertices = mesh_vert;
         mesh.triangles = triangle_index;
+        mesh.RecalculateNormals();
     }
 
     void ReadFiles(string verticies, string indecies)

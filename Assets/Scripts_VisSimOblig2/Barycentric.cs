@@ -15,6 +15,9 @@ public class Barycentric : MonoBehaviour
     [SerializeField] public Transform SphereInfo;
     [SerializeField] public Transform tester_gizmo;
     Vector3[] meshinfo;
+    public Vector3 currentTriangle;
+    public Vector3 AB;
+    public Vector3 AC;
 
     private void Start()
     {
@@ -52,6 +55,9 @@ public class Barycentric : MonoBehaviour
 
             if (barycentric.x >= 0 && barycentric.y >= 0 && barycentric.z >= 0)
             {
+                currentTriangle = barycentric;
+                AB = p2 - p1;
+                AC = p3 - p1;
                 break;
             }
         }
@@ -65,14 +71,18 @@ public class Barycentric : MonoBehaviour
         Vector2 v0 = p2 - p1;
         Vector2 v1 = p3 - p1;
         Vector2 v2 = vec2sphere - p1;
+      
         Debug.Log("GetBaryC v0: " + v0 + " v1: " + v1 + " v2: " + v2);
+        
         float d00 = Vector2.Dot(v0, v0);
         float d01 = Vector2.Dot(v0, v1);
         float d11 = Vector2.Dot(v1, v1);
         float d20 = Vector2.Dot(v2, v0);
         float d21 = Vector2.Dot(v2, v1);
         float denom = d00 * d11 - d01 * d01;
+        
         Debug.Log("GetBaryC denom: " + denom);
+        
         float v = (d11 * d20 - d01 * d21) / denom;
         float w = (d00 * d21 - d01 * d20) / denom;
         float u = (1.0f - v - w);

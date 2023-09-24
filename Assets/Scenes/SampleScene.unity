@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 1334512080}
   - component: {fileID: 1334512079}
   - component: {fileID: 1334512078}
+  - component: {fileID: 1334512081}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -386,12 +387,29 @@ Transform:
   m_GameObject: {fileID: 1334512077}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.188, y: 0.0416, z: 0.0807}
+  m_LocalPosition: {x: 0.188, y: 0.0693, z: 0.0807}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1334512081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334512077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7457a109bfa341b4f858737814ae5dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barycentricInformation: {fileID: 2136467197}
+  bary_Access: {fileID: 2136467197}
+  currentAcceleration: {x: 0, y: 0, z: 0}
+  currentVelocity: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1358416138
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +672,9 @@ MonoBehaviour:
   MeshInfo: {fileID: 2136467193}
   SphereInfo: {fileID: 1334512080}
   tester_gizmo: {fileID: 1358416142}
+  currentTriangle: {x: 0, y: 0, z: 0}
+  AB: {x: 0, y: 0, z: 0}
+  AC: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
