@@ -36,13 +36,9 @@ public class Barycentric : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 sphere_vec = SphereInfo.transform.position;
-        Debug.Log(sphere_vec);
+        // Debug.Log(sphere_vec);
         Vector3 currentLocaton = baryCentricPosition(meshinfo, sphere_vec);
-        Debug.Log(currentLocaton);
-
-
-       
-
+        // Debug.Log(currentLocaton);
         tester_gizmo.transform.position = currentLocaton;
     }
 
@@ -63,11 +59,11 @@ public class Barycentric : MonoBehaviour
             if (barycentric.x >= 0 && barycentric.y >= 0 && barycentric.z >= 0)
             {
                 currentTriangle = i;
-                Debug.Log("Current Triangle test: " +  currentTriangle);
+                // Debug.Log("Current Triangle test: " +  currentTriangle);
                 AB = p2 - p1;
                 AC = p3 - p1;
                 Vector3 n = Vector3.Cross(AB, AC);
-                Debug.Log("Normal fra bary AB;AC: " + n);
+                // Debug.Log("Normal fra bary AB;AC: " + n);
                 break;
             }
         }
@@ -116,24 +112,24 @@ public class Barycentric : MonoBehaviour
         Vector2 v0 = p2 - p1;
         Vector2 v1 = p3 - p1;
         Vector2 v2 = vec2sphere - p1;
-      
-        Debug.Log("GetBaryC v0: " + v0 + " v1: " + v1 + " v2: " + v2);
-        
+
+        // Debug.Log("GetBaryC v0: " + v0 + " v1: " + v1 + " v2: " + v2);
+
         float d00 = Vector2.Dot(v0, v0);
         float d01 = Vector2.Dot(v0, v1);
         float d11 = Vector2.Dot(v1, v1);
         float d20 = Vector2.Dot(v2, v0);
         float d21 = Vector2.Dot(v2, v1);
         float denom = d00 * d11 - d01 * d01;
-        
-        Debug.Log("GetBaryC denom: " + denom);
-        
+
+        // Debug.Log("GetBaryC denom: " + denom);
+
         float v = (d11 * d20 - d01 * d21) / denom;
         float w = (d00 * d21 - d01 * d20) / denom;
         float u = (1.0f - v - w);
 
         Vector3 barycentric3D = new Vector3(u, v, w);
-        Debug.Log("GetBaryC returns: " + barycentric3D);
+        // Debug.Log("GetBaryC returns: " + barycentric3D);
 
 
         return barycentric3D;

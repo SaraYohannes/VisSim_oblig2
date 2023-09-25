@@ -406,10 +406,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barycentricInformation: {fileID: 2136467197}
-  bary_Access: {fileID: 2136467197}
-  currentAcceleration: {x: 0, y: 0, z: 0}
+  mass: 0.1
+  meshInfo: {fileID: 2136467193}
+  vertex: []
+  gravity: 9.81
+  acceleration: {x: 0, y: 0, z: 0}
   currentVelocity: {x: 0, y: 0, z: 0}
+  newVelocity: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
+  newPosition: {x: 0, y: 0, z: 0}
+  bary_Access: {fileID: 2136467197}
 --- !u!1 &1358416138
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,50 +521,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1864921303
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1864921305}
-  - component: {fileID: 1864921304}
-  m_Layer: 0
-  m_Name: Grandpa_Reader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1864921304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864921303}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0bb1b7a1a42a1f4db48bfac2d9eb14b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1864921305
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864921303}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2136467192
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,6 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh_vert: []
+  triangle_index: 000000000300000001000000010000000300000004000000010000000400000005000000010000000500000002000000
 --- !u!4 &2136467194
 Transform:
   m_ObjectHideFlags: 0
@@ -672,7 +635,7 @@ MonoBehaviour:
   MeshInfo: {fileID: 2136467193}
   SphereInfo: {fileID: 1334512080}
   tester_gizmo: {fileID: 1358416142}
-  currentTriangle: {x: 0, y: 0, z: 0}
+  currentTriangle: 0
   AB: {x: 0, y: 0, z: 0}
   AC: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
@@ -681,7 +644,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
-  - {fileID: 1864921305}
   - {fileID: 2136467194}
   - {fileID: 1334512080}
   - {fileID: 1358416142}
